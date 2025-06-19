@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комильфо - Калькулятор прибыли</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Обновление цен (примерная реализация)
+        document.getElementById('update-prices').addEventListener('click', function() {
+            // Здесь можно добавить AJAX-запрос для получения актуальных цен
+            alert('Цены успешно обновлены!');
+        });
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0369a1',
+                        secondary: '#0ea5e9',
+                        accent: '#38bdf8',
+                        light: '#bae6fd',
+                        dark: '#082f49',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #082f49;
+            color: #f8fafc;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.9) 0%, rgba(7, 89, 133, 0.9) 100%),
+                           url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .counter-item {
+            transition: all 0.5s ease;
+        }
+        
+        .slide {
+            transition: transform 0.5s ease;
+        }
+        
+        .form-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+        }
+        
+        .wine-bottle {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .brand-logo {
+            filter: grayscale(100%) brightness(0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .brand-logo:hover {
+            filter: grayscale(0%) brightness(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-50 gradient-bg shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="main.html" class="flex items-center">
+                        <span class="text-accent text-4xl mr-2 font-serif italic" style="font-family: 'Times New Roman', serif;">𝓐</span>
+                        <span class="text-xl font-bold text-white">Комильфо</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="usl.html" class="text-gray-300 hover:text-accent transition">Услуги</a>
+                    <a href="tarf.html" class="text-gray-300 hover:text-accent transition">Тарифы</a>
+                    <a href="calc.html" class="text-gray-300 hover:text-accent transition">Калькулятор</a>
+                    <a href="info.html" class="text-gray-300 hover:text-accent transition">О компании</a>
+                    <a href="cont.html" class="text-gray-300 hover:text-accent transition">Контакты</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="usl.html" class="block py-2 text-gray-300 hover:text-accent transition">Услуги</a>
+                <a href="tarf.html" class="block py-2 text-gray-300 hover:text-accent transition">Тарифы</a>
+                <a href="calc.html" class="block py-2 text-gray-300 hover:text-accent transition">Калькулятор</a>
+                <a href="info.html" class="block py-2 text-gray-300 hover:text-accent transition">О компании</a>
+                <a href="cont.html" class="block py-2 text-gray-300 hover:text-accent transition">Контакты</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ЗАГОЛОВОК СТРАНИЦЫ -->
+    <section class="hero-gradient py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Калькулятор прибыли</h1>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                Рассчитайте вашу потенциальную прибыль при работе с нами
+            </p>
+        </div>
+    </section>
+
+    <!-- КАЛЬКУЛЯТОР -->
+    <section class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Калькулятор прибыли</h2>
+            
+            <div class="max-w-4xl mx-auto bg-primary bg-opacity-50 rounded-xl border border-gray-700 p-8">
+                <form id="calculator-form" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Объём закупки (₽)</label>
+                        <input type="number" id="purchase-amount" class="form-input w-full px-4 py-3 rounded-lg" placeholder="100000" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-300 mb-2">Наценка клиента (%)</label>
+                        <input type="number" id="client-markup" class="form-input w-full px-4 py-3 rounded-lg" placeholder="30" required>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label class="block text-gray-300 mb-2">Выбор тарифа</label>
+                        <select id="tariff" class="form-input w-full px-4 py-3 rounded-lg" required>
+                            <option value="">Выберите тариф</option>
+                            <option value="start">СТАРТ - 50 000 ₽ фикс.</option>
+                            <option value="business">БИЗНЕС - 10% от продаж (мин. 300 000 ₽)</option>
+                            <option value="premium">ПРЕМИУМ - 5% от продаж (мин. 1 000 000 ₽)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="md:col-span-2 text-center">
+                        <button type="submit" class="bg-accent hover:bg-blue-400 text-primary font-bold py-3 px-8 rounded-lg transition duration-300">
+                            Рассчитать прибыль
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="results" class="hidden">
+                    <h3 class="text-xl font-bold mb-4 text-center">Результаты расчёта</h3>
+                    <div class="bg-dark p-6 rounded-lg mb-6">
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div>
+                                <div class="text-gray-400 mb-1">Общая выручка</div>
+                                <div id="total-revenue" class="text-2xl font-bold">0 ₽</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-400 mb-1">Ваша прибыль</div>
+                                <div id="your-profit" class="text-2xl font-bold text-accent">0 ₽</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="h-64 bg-dark rounded-lg p-4">
+                        <canvas id="profit-chart"></canvas>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <a href="#contact" class="inline-block border border-accent text-accent hover:bg-accent hover:text-primary font-bold py-3 px-8 rounded-lg transition duration-300">
+                            Оставить заявку
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Обработка формы калькулятора
+        document.getElementById('calculator-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const purchaseAmount = parseFloat(document.getElementById('purchase-amount').value);
+            const markup = parseFloat(document.getElementById('client-markup').value) / 100;
+            const tariff = document.getElementById('tariff').value;
+            
+            // Проверка минимальных закупок
+            if (tariff === 'business' && purchaseAmount < 300000) {
+                alert('Для тарифа БИЗНЕС минимальный объём закупки 300 000 ₽');
+                return;
+            }
+            
+            if (tariff === 'premium' && purchaseAmount < 1000000) {
+                alert('Для тарифа ПРЕМИУМ минимальный объём закупки 1 000 000 ₽');
+                return;
+            }
+            
+            // Расчёт прибыли
+            const totalRevenue = purchaseAmount * (1 + markup);
+            let licenseCost;
+            
+            if (tariff === 'start') {
+                licenseCost = 50000;
+            } else if (tariff === 'business') {
+                licenseCost = totalRevenue * 0.1;
+            } else if (tariff === 'premium') {
+                licenseCost = totalRevenue * 0.05;
+            }
+            
+            const yourProfit = totalRevenue - purchaseAmount - licenseCost;
+            
+            // Отображение результатов
+            document.getElementById('total-revenue').textContent = totalRevenue.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('your-profit').textContent = yourProfit.toLocaleString('ru-RU') + ' ₽';
+            
+            // Построение графика
+            const ctx = document.getElementById('profit-chart').getContext('2d');
+            
+            if (window.profitChart) {
+                window.profitChart.destroy();
+            }
+            
+            window.profitChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Закупка', 'Лицензия', 'Ваша прибыль'],
+                    datasets: [{
+                        label: 'Распределение средств',
+                        data: [purchaseAmount, licenseCost, yourProfit],
+                        backgroundColor: [
+                            'rgba(14, 165, 233, 0.7)',
+                            'rgba(56, 189, 248, 0.7)',
+                            'rgba(186, 230, 253, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(14, 165, 233, 1)',
+                            'rgba(56, 189, 248, 1)',
+                            'rgba(186, 230, 253, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            document.getElementById('results').classList.remove('hidden');
+        });
+    </script>
+
+
+    <!-- СПЕЦПРЕДЛОЖЕНИЯ -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Специальные предложения</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-accent">
+                    <div class="flex items-start">
+                        <div class="bg-accent text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-gift text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Бонус при первом заказе</h3>
+                            <p class="text-gray-300 mb-2">При заказе от 300 000 ₽ получите 3 бутылки премиального вина в подарок.</p>
+                            <div class="text-sm text-accent">Действует до 31.12.2025</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-accent">
+                    <div class="flex items-start">
+                        <div class="bg-accent text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-truck text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Бесплатная доставка</h3>
+                            <p class="text-gray-300 mb-2">Бесплатная доставка для наших партнёров по Владимиру и Владимирской области.</p>
+                            <div class="text-sm text-accent">Постоянное предложение</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ЯРКАЯ КНОПКА ПЕРЕХОДА В КАЛЬКУЛЯТОР -->
+            <div class="text-center mt-12">
+                <a href="calc.html" class="inline-block bg-accent hover:bg-blue-400 text-primary font-bold py-4 px-8 rounded-full text-xl shadow-lg transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-calculator mr-2"></i> Перейти в калькулятор
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Почему выбирают нас?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 hover:border-accent transition">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Экономия на лицензии</h3>
+                    <p class="text-gray-300">Сэкономьте до 500 000 ₽ в год на оформлении собственной лицензии.</p>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 hover:border-accent transition">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Выгодные цены</h3>
+                    <p class="text-gray-300">Оптовые закупки напрямую у производителей позволяют предлагать лучшие цены.</p>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 hover:border-accent transition">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">10 лет на рынке</h3>
+                    <p class="text-gray-300">Опыт работы с 2013 года и сотни довольных клиентов по всей России.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="counter-item p-6">
+                    <div class="text-accent text-4xl md:text-5xl font-bold mb-2" data-count="350">0</div>
+                    <div class="text-gray-300 uppercase text-sm">Клиентов</div>
+                </div>
+                
+                <div class="counter-item p-6">
+                    <div class="text-accent text-4xl md:text-5xl font-bold mb-2" data-count="10">0</div>
+                    <div class="text-gray-300 uppercase text-sm">Лет на рынке</div>
+                </div>
+                
+                <div class="counter-item p-6">
+                    <div class="text-accent text-4xl md:text-5xl font-bold mb-2" data-count="1200">0</div>
+                    <div class="text-gray-300 uppercase text-sm">Тонн поставок</div>
+                </div>
+                
+                <div class="counter-item p-6">
+                    <div class="text-accent text-4xl md:text-5xl font-bold mb-2" data-count="45">0</div>
+                    <div class="text-gray-300 uppercase text-sm">Брендов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Наши клиенты</h2>
+            
+            <div class="relative overflow-hidden">
+                <div id="slider" class="flex transition-transform duration-300">
+                    <!-- Slide 1 -->
+                    <div class="slide min-w-full px-4">
+                        <div class="bg-primary bg-opacity-50 p-8 rounded-xl border border-gray-700">
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" alt="Магазин Винный Двор" class="w-32 h-32 rounded-full object-cover border-2 border-accent">
+                                </div>
+                                <div class="md:w-2/3">
+                                    <h3 class="text-xl font-bold mb-2">Магазин "Винный Двор"</h3>
+                                    <p class="text-gray-300 mb-4">"Сотрудничаем с Комильфо уже 5 лет. Благодаря аренде лицензии смогли сэкономить на старте бизнеса и быстро выйти на прибыль. Оптовые поставки всегда вовремя и по выгодным ценам."</p>
+                                    <div class="text-accent font-bold">+40% к обороту за первый год</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="slide min-w-full px-4">
+                        <div class="bg-primary bg-opacity-50 p-8 rounded-xl border border-gray-700">
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Ресторан Гранд Вино" class="w-32 h-32 rounded-full object-cover border-2 border-accent">
+                                </div>
+                                <div class="md:w-2/3">
+                                    <h3 class="text-xl font-bold mb-2">Ресторан "Гранд Вино"</h3>
+                                    <p class="text-gray-300 mb-4">"Для нашего премиального ресторана важно качество алкоголя и стабильность поставок. Комильфо полностью оправдали наши ожидания. Особенно ценим консультации по ассортименту."</p>
+                                    <div class="text-accent font-bold">Экономия 300 000 ₽ в год</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="slide min-w-full px-4">
+                        <div class="bg-primary bg-opacity-50 p-8 rounded-xl border border-gray-700">
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                                    <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Бар Коктейль Хаус" class="w-32 h-32 rounded-full object-cover border-2 border-accent">
+                                </div>
+                                <div class="md:w-2/3">
+                                    <h3 class="text-xl font-bold mb-2">Бар "Коктейль Хаус"</h3>
+                                    <p class="text-gray-300 mb-4">"Начинали с нуля без опыта в алкогольном бизнесе. Комильфо не только предоставили лицензию, но и помогли с подбором ассортимента и обучением персонала. Теперь у нас стабильный бизнес."</p>
+                                    <div class="text-accent font-bold">Окупились за 8 месяцев</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mt-8 space-x-4">
+                    <button id="prev-slide" class="w-10 h-10 rounded-full bg-primary bg-opacity-50 border border-gray-700 text-accent hover:bg-accent hover:text-primary transition">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="next-slide" class="w-10 h-10 rounded-full bg-primary bg-opacity-50 border border-gray-700 text-accent hover:bg-accent hover:text-primary transition">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 gradient-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Акции и изменения цен</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-accent mb-6">
+                    <div class="flex items-start">
+                        <div class="bg-accent text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-percent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Скидка 15% на первую поставку</h3>
+                            <p class="text-gray-300 mb-2">Для новых клиентов при заказе от 100 000 ₽. Акция действует до 31.12.2025.</p>
+                            <div class="text-sm text-accent">Акция</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 mb-6">
+                    <div class="flex items-start">
+                        <div class="bg-gray-700 rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-chart-line text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Обновление прайс-листа</h3>
+                            <p class="text-gray-300 mb-2">С 1 ноября новые цены на вина из Италии и Франции. Среднее снижение цен на 7%.</p>
+                            <div class="text-sm text-gray-400">01.11.2025</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700">
+                    <div class="flex items-start">
+                        <div class="bg-gray-700 rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-gift text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Бесплатные промо-материалы</h3>
+                            <p class="text-gray-300 mb-2">При заказе от 200 000 ₽ получаете набор POS-материалов для вашего заведения.</p>
+                            <div class="text-sm text-gray-400">Постоянное предложение</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-primary bg-opacity-50 rounded-xl border border-gray-700 p-8">
+                <h2 class="text-3xl font-bold mb-6">Оставьте заявку</h2>
+                <p class="text-gray-300 mb-8">Наши менеджеры свяжутся с вами в течение 30 минут для консультации</p>
+                
+                <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Ваше имя</label>
+                        <input type="text" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Иван Иванов" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-300 mb-2">Телефон</label>
+                        <input type="tel" class="form-input w-full px-4 py-3 rounded-lg" placeholder="+7 (999) 123-45-67" required>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label class="block text-gray-300 mb-2">Тип бизнеса</label>
+                        <select class="form-input w-full px-4 py-3 rounded-lg">
+                            <option value="">Выберите тип бизнеса</option>
+                            <option value="bar">Бар/Ресторан</option>
+                            <option value="shop">Магазин</option>
+                            <option value="cafe">Кафе</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label class="block text-gray-300 mb-2">Комментарий</label>
+                        <textarea class="form-input w-full px-4 py-3 rounded-lg h-32" placeholder="Интересует аренда лицензии и оптовые поставки..."></textarea>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <button type="submit" class="w-full bg-accent hover:bg-blue-400 text-primary font-bold py-3 px-6 rounded-lg transition duration-300">
+                            Отправить заявку
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="gradient-bg py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="flex items-center mb-4">
+                        <i class="fas fa-wine-glass-alt text-accent text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-white">Комильфо</span>
+                    </a>
+                    <p class="text-gray-400">Оптовая дистрибуция алкоголя и аренда лицензии с 2015 года.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Контакты</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone-alt mr-3 text-accent"></i>
+                            <span>+7 (495) 123-45-67</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                            <span>info@komilfo.ru</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-3 text-accent"></i>
+                            <span>г. Владимир, ул. Мостостроевская, 2</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Навигация</h3>
+                    <ul class="space-y-2">
+                        <li><a href="usl.html" class="text-gray-400 hover:text-accent transition">Услуги</a></li>
+                        <li><a href="tarf.html" class="text-gray-400 hover:text-accent transition">Тарифы</a></li>
+                        <li><a href="calc.html" class="text-gray-400 hover:text-accent transition">Калькулятор</a></li>
+                        <li><a href="info.html" class="text-gray-400 hover:text-accent transition">О компании</a></li>
+                        <li><a href="cont.html" class="text-gray-400 hover:text-accent transition">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Мы в соцсетях</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-50 rounded-full flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent hover:text-primary transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-50 rounded-full flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent hover:text-primary transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-50 rounded-full flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent hover:text-primary transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-gray-400 mb-2">Подпишитесь на рассылку</p>
+                        <div class="flex">
+                            <input type="email" class="form-input px-4 py-2 rounded-l-lg w-full" placeholder="Ваш email">
+                            <button class="bg-accent text-primary px-4 py-2 rounded-r-lg hover:bg-blue-400 transition">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 ООО "Комильфо". Все права защищены.</p>
+                <p class="mt-2">Продажа алкоголя лицам старше 18 лет.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Counter animation
+        const counters = document.querySelectorAll('.counter-item div[data-count]');
+        const speed = 200;
+        
+        function animateCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+        
+        // Start counter animation when scrolled to section
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(document.querySelector('.counter-item'));
+        
+        // Slider functionality
+        const slider = document.getElementById('slider');
+        const prevButton = document.getElementById('prev-slide');
+        const nextButton = document.getElementById('next-slide');
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        prevButton.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        });
+        
+        nextButton.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        });
+        
+        // Auto slide change
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }, 5000);
+        
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would normally send the form data to the server
+            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

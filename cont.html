@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комильфо - Контакты</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0369a1',
+                        secondary: '#0ea5e9',
+                        accent: '#38bdf8',
+                        light: '#bae6fd',
+                        dark: '#082f49',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #082f49;
+            color: #f8fafc;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.9) 0%, rgba(7, 89, 133, 0.9) 100%),
+                           url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .form-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="sticky top-0 z-50 gradient-bg shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="main.html" class="flex items-center">
+                        <span class="text-accent text-4xl mr-2 font-serif italic" style="font-family: 'Times New Roman', serif;">𝓐</span>
+                        <span class="text-xl font-bold text-white">Комильфо</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="usl.html" class="text-gray-300 hover:text-accent transition">Услуги</a>
+                    <a href="tarf.html" class="text-gray-300 hover:text-accent transition">Тарифы</a>
+                    <a href="calc.html" class="text-gray-300 hover:text-accent transition">Калькулятор</a>
+                    <a href="info.html" class="text-gray-300 hover:text-accent transition">О компании</a>
+                    <a href="cont.html" class="text-gray-300 hover:text-accent transition">Контакты</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Мобильное меню -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="usl.html" class="block py-2 text-gray-300 hover:text-accent transition">Услуги</a>
+                <a href="tarf.html" class="block py-2 text-gray-300 hover:text-accent transition">Тарифы</a>
+                <a href="calc.html" class="block py-2 text-gray-300 hover:text-accent transition">Калькулятор</a>
+                <a href="info.html" class="block py-2 text-gray-300 hover:text-accent transition">О компании</a>
+                <a href="cont.html" class="block py-2 text-gray-300 hover:text-accent transition">Контакты</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Заголовок страницы -->
+    <section class="hero-gradient py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Контакты</h1>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                Свяжитесь с нами удобным для вас способом
+            </p>
+        </div>
+    </section>
+
+    <!-- Контактная информация -->
+    <section class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Контактные данные -->
+                <div class="bg-primary bg-opacity-50 p-8 rounded-xl border border-gray-700">
+                    <h2 class="text-3xl font-bold mb-6">Контактная информация</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-accent text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Телефоны</h3>
+                                <p class="text-gray-300">+7 (495) 123-45-67</p>
+                                <p class="text-gray-300">+7 (915) 765-43-21</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-accent text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Email</h3>
+                                <p class="text-gray-300">info@komilfo.ru</p>
+                                <p class="text-gray-300">sales@komilfo.ru</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-accent text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Адрес офиса</h3>
+                                <p class="text-gray-300">г. Владимир, ул. Мостостроевская, 2</p>
+                                <p class="text-gray-300">Пн-Пт: 9:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Чат-боты -->
+                    <div class="mt-8">
+                        <h3 class="text-xl font-bold mb-4">Быстрая связь через мессенджеры</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg transition">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                            </a>
+                            <a href="#" class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition">
+                                <i class="fab fa-telegram-plane mr-2"></i> Telegram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Карта -->
+                <div class="bg-primary bg-opacity-50 p-8 rounded-xl border border-gray-700">
+                    <h2 class="text-3xl font-bold mb-6">Мы на карте</h2>
+                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                        <!-- Здесь будет карта -->
+                        <div class="w-full h-96 bg-gray-800 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-map-marked-alt text-5xl text-gray-600 mb-4"></i>
+                                <p class="text-gray-400">г. Владимир, ул. Мостостроевская, 2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма обратной связи -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-primary bg-opacity-50 rounded-xl border border-gray-700 p-8">
+                <h2 class="text-3xl font-bold mb-6">Форма обратной связи</h2>
+                <p class="text-gray-300 mb-8">Заполните форму и мы свяжемся с вами в ближайшее время</p>
+                
+                <form id="feedback-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-300 mb-2">Ваше имя</label>
+                            <input type="text" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Иван Иванов" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-300 mb-2">Телефон</label>
+                            <input type="tel" class="form-input w-full px-4 py-3 rounded-lg" placeholder="+7 (999) 123-45-67" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-300 mb-2">Email</label>
+                        <input type="email" class="form-input w-full px-4 py-3 rounded-lg" placeholder="email@example.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-300 mb-2">Тема обращения</label>
+                        <select class="form-input w-full px-4 py-3 rounded-lg">
+                            <option value="">Выберите тему</option>
+                            <option value="order">Заказ продукции</option>
+                            <option value="license">Аренда лицензии</option>
+                            <option value="cooperation">Сотрудничество</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-300 mb-2">Сообщение</label>
+                        <textarea class="form-input w-full px-4 py-3 rounded-lg h-32" placeholder="Ваше сообщение..."></textarea>
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="w-full bg-accent hover:bg-blue-400 text-primary font-bold py-3 px-6 rounded-lg transition duration-300">
+                            Отправить сообщение
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал сайта -->
+    <footer class="gradient-bg py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="flex items-center mb-4">
+                        <i class="fas fa-wine-glass-alt text-accent text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-white">Комильфо</span>
+                    </a>
+                    <p class="text-gray-400">Оптовая дистрибуция алкоголя и аренда лицензии с 2015 года.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Контакты</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone-alt mr-3 text-accent"></i>
+                            <span>+7 (495) 123-45-67</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                            <span>info@komilfo.ru</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-3 text-accent"></i>
+                            <span>г. Владимир, ул. Мостостроевская, 2</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Навигация</h3>
+                    <ul class="space-y-2">
+                        <li><a href="usl.html" class="text-gray-400 hover:text-accent transition">Услуги</a></li>
+                        <li><a href="tarf.html" class="text-gray-400 hover:text-accent transition">Тарифы</a></li>
+                        <li><a href="calc.html" class="text-gray-400 hover:text-accent transition">Калькулятор</a></li>
+                        <li><a href="info.html" class="text-gray-400 hover:text-accent transition">О компании</a></li>
+                        <li><a href="cont.html" class="text-gray-400 hover:text-accent transition">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Мы в соцсетях</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-50 rounded-full flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent hover:text-primary transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-50 rounded-full flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent hover:text-primary transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-50 rounded-full flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent hover:text-primary transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-gray-400 mb-2">Подпишитесь на рассылку</p>
+                        <div class="flex">
+                            <input type="email" class="form-input px-4 py-2 rounded-l-lg w-full" placeholder="Ваш email">
+                            <button class="bg-accent text-primary px-4 py-2 rounded-r-lg hover:bg-blue-400 transition">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 ООО "Комильфо". Все права защищены.</p>
+                <p class="mt-2">Продажа алкоголя лицам старше 18 лет.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Отправка формы
+        const feedbackForm = document.getElementById('feedback-form');
+        
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
+            feedbackForm.reset();
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

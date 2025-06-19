@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комильфо - Оптовая дистрибуция алкоголя и аренда лицензии</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0369a1',
+                        secondary: '#0ea5e9',
+                        accent: '#38bdf8',
+                        light: '#bae6fd',
+                        dark: '#082f49',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #082f49;
+            color: #f8fafc;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.9) 0%, rgba(7, 89, 133, 0.9) 100%),
+                           url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .form-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-50 gradient-bg shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="main.html" class="flex items-center">
+                        <span class="text-accent text-4xl mr-2 font-serif italic" style="font-family: 'Times New Roman', serif;">𝓐</span>
+                        <span class="text-xl font-bold text-white">Комильфо</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="usl.html" class="text-gray-300 hover:text-accent transition">Услуги</a>
+                    <a href="tarf.html" class="text-gray-300 hover:text-accent transition">Тарифы</a>
+                    <a href="calc.html" class="text-gray-300 hover:text-accent transition">Калькулятор</a>
+                    <a href="info.html" class="text-gray-300 hover:text-accent transition">О компании</a>
+                    <a href="cont.html" class="text-gray-300 hover:text-accent transition">Контакты</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="usl.html" class="block py-2 text-gray-300 hover:text-accent transition">Услуги</a>
+                <a href="tarf.html" class="block py-2 text-gray-300 hover:text-accent transition">Тарифы</a>
+                <a href="calc.html" class="block py-2 text-gray-300 hover:text-accent transition">Калькулятор</a>
+                <a href="info.html" class="block py-2 text-gray-300 hover:text-accent transition">О компании</a>
+                <a href="cont.html" class="block py-2 text-gray-300 hover:text-accent transition">Контакты</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ЗАГОЛОВОК СТРАНИЦЫ -->
+    <section class="hero-gradient py-20 md:py-32" style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.9) 0%, rgba(7, 89, 133, 0.9) 100%), url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); background-size: cover; background-position: center;">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">О компании ООО «Комильфо»</h1>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                Надёжный партнёр в алкогольной дистрибуции с 2013 года
+            </p>
+        </div>
+    </section>
+
+    <!-- НАША ИСТОРИЯ -->
+    <section class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Наша история</h2>
+            <div class="max-w-4xl mx-auto bg-primary bg-opacity-50 p-8 rounded-xl border border-gray-700">
+                <p class="text-gray-300 mb-6">
+                    ООО «Комильфо» работает на рынке алкогольной дистрибуции с 2013 года. Начиная с небольших поставок в локальные магазины Владимирской области, компания быстро расширила географию, включив Рязань и Новгородскую область.
+                </p>
+                <p class="text-gray-300">
+                    За 10 лет мы помогли более 500 предпринимателям легально продавать алкоголь, экономя на лицензировании.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- СУТЬ РАБОТЫ -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Суть работы</h2>
+            <div class="max-w-4xl mx-auto bg-primary bg-opacity-50 p-8 rounded-xl border border-accent">
+                <p class="text-gray-300 mb-4">
+                    Мы предлагаем два ключевых решения:
+                </p>
+                <ul class="text-gray-300 space-y-4 mb-6">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>Оптовые поставки алкоголя – прямые контракты с производителями, минимальные наценки</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>Аренда лицензии – возможность легальной розничной продажи без затрат на оформление собственного разрешения</span>
+                    </li>
+                </ul>
+                <p class="text-gray-300">
+                    Наша модель снижает барьеры для малого бизнеса: вы получаете товар + юридическую поддержку в одном пакете.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ГЕОГРАФИЯ ДЕЯТЕЛЬНОСТИ -->
+    <section class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">География деятельности</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700">
+                    <h3 class="text-xl font-bold mb-4 text-accent">Регионы работы:</h3>
+                    <ul class="text-gray-300 space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-accent mr-3 mt-1"></i>
+                            <span>Владимирская область (основной склад во Владимире)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-accent mr-3 mt-1"></i>
+                            <span>Рязанская область (логистический хаб в Рязани)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-accent mr-3 mt-1"></i>
+                            <span>Новгородская область (партнёрские сети в Великом Новгороде)</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 flex items-center justify-center">
+                    <!-- Здесь будет карта -->
+                    <div class="text-center text-gray-400">
+                        <i class="fas fa-map text-5xl mb-4"></i>
+                        <p>Карта регионов работы</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЧАСТЬ ГРУППЫ АЛЬТАИР -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Часть группы «Альтаир»</h2>
+            <div class="max-w-4xl mx-auto bg-primary bg-opacity-50 p-8 rounded-xl border border-accent">
+                <p class="text-gray-300">
+                    С 2015 года ООО «Комильфо» входит в группу компаний «Альтаир» — объединение предприятий розничной и оптовой торговли. Это позволяет нам предлагать клиентам дополнительные преимущества: доступ к эксклюзивным брендам, страхование поставок и юридическое сопровождение.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- НАШИ ПРЕИМУЩЕСТВА -->
+    <section class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Наши преимущества</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 hover:border-accent transition">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">10 лет стабильной работы</h3>
+                    <p class="text-gray-300">Репутация без скандалов и проверенная надёжность</p>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 hover:border-accent transition">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Прозрачные тарифы</h3>
+                    <p class="text-gray-300">Фиксированные цены на лицензию без скрытых платежей</p>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 hover:border-accent transition">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Гибкая логистика</h3>
+                    <p class="text-gray-300">Доставка в течение 48 часов по основным регионам</p>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 hover:border-accent transition">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Прямые контракты</h3>
+                    <p class="text-gray-300">Работаем напрямую с производителями без посредников</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СПЕЦПРЕДЛОЖЕНИЯ -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Специальные предложения</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-accent">
+                    <div class="flex items-start">
+                        <div class="bg-accent text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-gift text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Бонус при первом заказе</h3>
+                            <p class="text-gray-300 mb-2">При заказе от 300 000 ₽ получите 3 бутылки премиального вина в подарок.</p>
+                            <div class="text-sm text-accent">Действует до 31.12.2025</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-accent">
+                    <div class="flex items-start">
+                        <div class="bg-accent text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-truck text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Бесплатная доставка</h3>
+                            <p class="text-gray-300 mb-2">Бесплатная доставка для наших партнёров по Владимиру и Владимирской области.</p>
+                            <div class="text-sm text-accent">Постоянное предложение</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 gradient-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Акции и изменения цен</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-accent mb-6">
+                    <div class="flex items-start">
+                        <div class="bg-accent text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-percent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Скидка 15% на первую поставку</h3>
+                            <p class="text-gray-300 mb-2">Для новых клиентов при заказе от 100 000 ₽. Акция действует до 31.12.2025.</p>
+                            <div class="text-sm text-accent">Акция</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700 mb-6">
+                    <div class="flex items-start">
+                        <div class="bg-gray-700 rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-chart-line text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Обновление прайс-листа</h3>
+                            <p class="text-gray-300 mb-2">С 1 ноября новые цены на вина из Италии и Франции. Среднее снижение цен на 7%.</p>
+                            <div class="text-sm text-gray-400">01.11.2025</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-primary bg-opacity-50 p-6 rounded-xl border border-gray-700">
+                    <div class="flex items-start">
+                        <div class="bg-gray-700 rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-gift text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Бесплатные промо-материалы</h3>
+                            <p class="text-gray-300 mb-2">При заказе от 200 000 ₽ получаете набор POS-материалов для вашего заведения.</p>
+                            <div class="text-sm text-gray-400">Постоянное предложение</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРИЗЫВ К ДЕЙСТВИЮ -->
+    <section class="py-16 gradient-bg">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Готовы начать сотрудничество?</h2>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                Оставьте заявку и наш менеджер свяжется с вами для консультации
+            </p>
+            <a href="cont.html" class="inline-block bg-accent hover:bg-blue-400 text-primary font-bold py-4 px-8 rounded-full text-xl shadow-lg transition duration-300 transform hover:scale-105">
+                Связаться с нами
+            </a>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-primary bg-opacity-50 rounded-xl border border-gray-700 p-8">
+                <h2 class="text-3xl font-bold mb-6">Оставьте заявку</h2>
+                <p class="text-gray-300 mb-8">Наши менеджеры свяжутся с вами в течение 30 минут для консультации</p>
+                
+                <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Ваше имя</label>
+                        <input type="text" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Иван Иванов" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-300 mb-2">Телефон</label>
+                        <input type="tel" class="form-input w-full px-4 py-3 rounded-lg" placeholder="+7 (999) 123-45-67" required>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label class="block text-gray-300 mb-2">Тип бизнеса</label>
+                        <select class="form-input w-full px-4 py-3 rounded-lg">
+                            <option value="">Выберите тип бизнеса</option>
+                            <option value="bar">Бар/Ресторан</option>
+                            <option value="shop">Магазин</option>
+                            <option value="cafe">Кафе</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label class="block text-gray-300 mb-2">Комментарий</label>
+                        <textarea class="form-input w-full px-4 py-3 rounded-lg h-32" placeholder="Интересует аренда лицензии и оптовые поставки..."></textarea>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <button type="submit" class="w-full bg-accent hover:bg-blue-400 text-primary font-bold py-3 px-6 rounded-lg transition duration-300">
+                            Отправить заявку
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="gradient-bg py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="flex items-center mb-4">
+                        <i class="fas fa-wine-glass-alt text-accent text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-white">Комильфо</span>
+                    </a>
+                    <p class="text-gray-400">Оптовая дистрибуция алкоголя и аренда лицензии с 2015 года.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Контакты</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone-alt mr-3 text-accent"></i>
+                            <span>+7 (495) 123-45-67</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                            <span>info@komilfo.ru</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-3 text-accent"></i>
+                            <span>г. Владимир, ул. Мостостроевская, 2</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Навигация</h3>
+                    <ul class="space-y-2">
+                        <li><a href="usl.html" class="text-gray-400 hover:text-accent transition">Услуги</a></li>
+                        <li><a href="tarf.html" class="text-gray-400 hover:text-accent transition">Тарифы</a></li>
+                        <li><a href="calc.html" class="text-gray-400 hover:text-accent transition">Калькулятор</a></li>
+                        <li><a href="info.html" class="text-gray-400 hover:text-accent transition">О компании</a></li>
+                        <li><a href="cont.html" class="text-gray-400 hover:text-accent transition">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Мы в соцсетях</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-50 rounded-full flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent hover:text-primary transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-50 rounded-full flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent hover:text-primary transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-50 rounded-full flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent hover:text-primary transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-gray-400 mb-2">Подпишитесь на рассылку</p>
+                        <div class="flex">
+                            <input type="email" class="form-input px-4 py-2 rounded-l-lg w-full" placeholder="Ваш email">
+                            <button class="bg-accent text-primary px-4 py-2 rounded-r-lg hover:bg-blue-400 transition">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 ООО "Комильфо". Все права защищены.</p>
+                <p class="mt-2">Продажа алкоголя лицам старше 18 лет.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would normally send the form data to the server
+            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
